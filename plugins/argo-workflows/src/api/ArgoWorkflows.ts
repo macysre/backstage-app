@@ -35,7 +35,7 @@ export class ArgoWorkflows implements ArgoWorkflowsApi {
   ): Promise<IoArgoprojWorkflowV1alpha1WorkflowList> {
     let path = `/apis/${API_VERSION}/${WORKFLOW_PLURAL}`; 
     
-    if (namespace !== undefined) {
+    if (namespace !== undefined && namespace !== "default") {
       path = `/apis/${API_VERSION}/namespaces/${namespace}/${WORKFLOW_PLURAL}`;
     }
     const query = new URLSearchParams({
