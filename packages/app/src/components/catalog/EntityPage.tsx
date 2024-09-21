@@ -79,7 +79,7 @@ const cicdContent = (
       <EntityArgoWorkflowsOverviewCard title="Workflows"/>
     </EntitySwitch.Case>
     <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
-    <EntityArgoCDOverviewCard title="ArgoCD Apps"/>
+    <EntityArgoCDOverviewCard/>
     </EntitySwitch.Case>
     <EntitySwitch.Case>
       <EmptyState
