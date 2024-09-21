@@ -78,7 +78,9 @@ const cicdContent = (
     <EntitySwitch.Case if={e => isArgoWorkflowsAvailable(e)}>
       <EntityArgoWorkflowsOverviewCard title="Workflows"/>
     </EntitySwitch.Case>
-
+    <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
+    <EntityArgoCDOverviewCard title="ArgoCD Apps"/>
+    </EntitySwitch.Case>
     <EntitySwitch.Case>
       <EmptyState
         title="No CI/CD available for this entity"
