@@ -78,26 +78,8 @@ const cicdContent = (
     <EntitySwitch.Case if={e => isArgoWorkflowsAvailable(e)}>
       <EntityArgoWorkflowsOverviewCard title="Workflows"/>
     </EntitySwitch.Case>
-    <EntitySwitch.Case>
-      <EmptyState
-        title="No CI/CD available for this entity"
-        missing="info"
-        description="You need to add an annotation to your component if you want to enable CI/CD for it. You can read more about annotations in Backstage by clicking the button below."
-        action={
-          <Button
-            variant="contained"
-            color="primary"
-            href="https://backstage.io/docs/features/software-catalog/well-known-annotations"
-          >
-            Read more
-          </Button>
-        }
-      />
-    </EntitySwitch.Case>
-  </EntitySwitch>
-  <EntitySwitch>
     <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
-    <EntityArgoCDOverviewCard/>
+      <EntityArgoCDOverviewCard/>
     </EntitySwitch.Case>
   </EntitySwitch>
 );
