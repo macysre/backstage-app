@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -32,6 +32,7 @@ import {
   EntityOwnershipCard,
 } from '@backstage/plugin-org';
 import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
+import { EmptyState } from '@backstage/core-components';
 import {
   Direction,
   EntityCatalogGraphCard,
@@ -78,7 +79,23 @@ const cicdContent = (
       <EntityArgoWorkflowsOverviewCard title="Workflows"/>
     </EntitySwitch.Case>
     <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
-      <EntityArgoCDOverviewCard/>
+    <EntityArgoCDOverviewCard/>
+    </EntitySwitch.Case>
+    <EntitySwitch.Case>
+      <EmptyState
+        title="No CI/CD available for this entity"
+        missing="info"
+        description="You need to add an annotation to your component if you want to enable CI/CD for it. You can read more about annotations in Backstage by clicking the button below."
+        action={
+          <Button
+            variant="contained"
+            color="primary"
+            href="https://backstage.io/docs/features/software-catalog/well-known-annotations"
+          >
+            Read more
+          </Button>
+        }
+      />
     </EntitySwitch.Case>
   </EntitySwitch>
 );
@@ -117,6 +134,13 @@ const overviewContent = (
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
+    <EntitySwitch>
+      <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
+        <Grid item md={6}>
+          <EntityArgoCDOverviewCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
     <EntitySwitch>
       <EntitySwitch.Case if={e => isTerraformAvailable(e)}>
         <Grid item md={6}>
