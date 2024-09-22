@@ -135,13 +135,6 @@ const overviewContent = (
       <EntityAboutCard variant="gridItem" />
     </Grid>
     <EntitySwitch>
-      <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
-        <Grid item md={6}>
-          <EntityArgoCDOverviewCard />
-        </Grid>
-      </EntitySwitch.Case>
-    </EntitySwitch>
-    <EntitySwitch>
       <EntitySwitch.Case if={e => isTerraformAvailable(e)}>
         <Grid item md={6}>
           <TerraformPluginPage />
